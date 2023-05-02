@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--pd);
+  align-items: center;
+  height: 84px;
+  background: var(--white);
+  position: relative;
+}
