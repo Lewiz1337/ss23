@@ -1,13 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { rootWatcher } from './saga';
-import jobsSlice from './slices/vacantionsSlice/jobs';
+import { rootWatcher } from './saga/root';
+import jobsSlice from './slices/jobsSlice/jobs';
+import jobSlice from './slices/jobSlice/job';
+import filterSlice from './slices/filterSlice/filter';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
     jobs: jobsSlice,
+    job: jobSlice,
+    filter: filterSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 });
@@ -15,4 +19,4 @@ export const store = configureStore({
 sagaMiddleware.run(rootWatcher);
 
 export type RootState = ReturnType<typeof store.getState>;
-// export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;

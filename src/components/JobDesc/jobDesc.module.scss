@@ -1,0 +1,21 @@
+.root {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  padding: 24px;
+  b {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 16px;
+  }
+  p {
+    height: min-content;
+    // margin-bottom: 16px;
+  }
+  ul {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+}

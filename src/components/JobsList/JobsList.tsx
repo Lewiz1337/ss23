@@ -1,42 +1,50 @@
 import React from 'react';
-import { Pagination } from '@mantine/core';
+import { Loader, Pagination } from '@mantine/core';
 import styles from './jobsList.module.scss';
+import { Job } from '../Job/Job';
+import { useNavigate } from 'react-router-dom';
+import { Empty, EmptyButtonType } from '../Empty/Empty';
 import { useSelector } from 'react-redux';
 import { jobsState } from '../../redux/selctors';
-import { Job } from '../Job/Job';
 
-export const JobsList = () => {
+type JobsListType = {
+  jobs: JobType[];
+};
+
+export const JobsList: React.FC<JobsListType> = ({ jobs }) => {
   const [activePage, setPage] = React.useState(1);
-  const { jobs } = useSelector(jobsState);
 
-  const data = [...new Array(21)].map((item, i) => i);
   const offset = 4;
   const pageCount = Math.ceil(jobs.length / offset);
   const currentPage = jobs.slice(offset * (activePage - 1), offset * (activePage - 1) + offset);
 
-  // payment_from(pin):33600
-  // payment_to(pin):38600
-  // address
-  // currency
-  // type_of_work
+  const navigate = useNavigate();
+  const onJobHandleClick = (id: number) => {
+    navigate(`${id}`);
+  };
 
   return (
     <div className={styles.root}>
-      {currentPage.map(
-        ({ profession, payment_from, payment_to, address, currency, type_of_work, id }, i) => {
-          const props = {
-            profession,
-            payment_from,
-            payment_to,
-            address,
-            currency,
-            type_of_work,
-            id,
-          };
-          return <Job key={id} {...props} />;
-        },
-      )}
+      {currentPage.map((job) => {
+        return <Job key={job.id} {...job} handleClick={() => onJobHandleClick(job.id)} />;
+      })}
       <Pagination total={pageCount} onChange={setPage} />
     </div>
   );
+};
+
+type JobsListHOCType = {
+  button?: EmptyButtonType;
+  jobs: JobType[];
+};
+export const JobsListHOC: React.FC<JobsListHOCType> = ({ jobs, button }) => {
+  const { status } = useSelector(jobsState);
+  if (status === 'loading') {
+    return (
+      <div className={styles.loader}>
+        <Loader />
+      </div>
+    );
+  }
+  return <>{jobs.length ? <JobsList jobs={jobs} /> : <Empty button={button} />}</>;
 };

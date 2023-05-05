@@ -8,6 +8,12 @@ type BilletType = {
 };
 
 export const Billet: React.FC<BilletType> = (props) => {
-  const billetClass = classNames({ [styles.biilet]: true, [props.className]: props.className });
-  return <div className={billetClass}>{props.children}</div>;
+  const { className, children } = props;
+  const billetClass = classNames({ [styles.biilet]: true, [className]: className });
+
+  return (
+    <div {...props} className={billetClass}>
+      {children}
+    </div>
+  );
 };

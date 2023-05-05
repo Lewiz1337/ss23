@@ -1,0 +1,9 @@
+.root {
+  --pdLR: 172px;
+  padding-left: calc(var(--pdLR) + var(--pd));
+  padding-right: calc(var(--pdLR) + var(--pd));
+  display: flex;
+  main {
+    gap: 20px;
+  }
+}
