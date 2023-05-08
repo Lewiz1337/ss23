@@ -30,8 +30,14 @@ h6 {
   --blue-200: #c9e0ff;
   --blue-100: #deecff;
   --pd: 162px;
-  @media (max-width: 400px) {
+  @media (max-width: 1200px) {
     --pd: 30px;
+  }
+  @media (max-width: 1200px) {
+    --pd: 30px;
+  }
+  @media (max-width: 480px) {
+    --pd: 4px;
   }
 }
 body {

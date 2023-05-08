@@ -28,7 +28,7 @@ export const JobsList: React.FC<JobsListType> = ({ jobs }) => {
       {currentPage.map((job) => {
         return <Job key={job.id} {...job} handleClick={() => onJobHandleClick(job.id)} />;
       })}
-      <Pagination total={pageCount} onChange={setPage} />
+      <Pagination className={styles.pagination} total={pageCount} onChange={setPage} />
     </div>
   );
 };

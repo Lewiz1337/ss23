@@ -7,3 +7,11 @@
   background: var(--white);
   position: relative;
 }
+@media (max-width: 767px) {
+  .root {
+    flex-direction: column;
+    gap: 12px;
+    height: unset;
+    padding: 16px 0px;
+  }
+}

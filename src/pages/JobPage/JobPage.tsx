@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from '../../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { jobState } from '../../redux/selctors';
+import { jobState, userState } from '../../redux/selctors';
 import { Job } from '../../components/Job/Job';
 
 import styles from './jobPage.module.scss';
@@ -11,14 +11,15 @@ import { fetchJobById } from '../../redux/saga/actions';
 
 export const JobPage = () => {
   const { job } = useSelector(jobState);
+  const { isAuth } = useSelector(userState);
   const dispatch = useDispatch();
   const params = useParams();
 
   React.useEffect(() => {
-    if (params.id) {
+    if (params.id && isAuth) {
       dispatch(fetchJobById(+params.id));
     }
-  }, []);
+  }, [isAuth]);
 
   return (
     <>

@@ -8,6 +8,7 @@ import { FiltersType, clearFilter, setFilters } from '../../redux/slices/filterS
 import { fetchJobs } from '../../redux/saga/actions';
 import { FilterSelect } from './Inputs/FilterSelect';
 import { FilterNumbersInput } from './Inputs/FilterNumbersInput';
+import React from 'react';
 
 export const FilterForm = () => {
   const { filters } = useSelector(filterState);
@@ -21,6 +22,15 @@ export const FilterForm = () => {
       paymentTo: '',
     },
   });
+
+  React.useEffect(() => {
+    const { field, paymentFrom, paymentTo } = filters;
+    form.setValues({
+      field,
+      paymentFrom,
+      paymentTo,
+    });
+  }, []);
 
   const onSubmitForm = (values: FiltersType) => {
     const { field, paymentFrom, paymentTo } = values;
@@ -57,8 +67,11 @@ export const FilterForm = () => {
       </div>
       <form className={styles.form} onSubmit={form.onSubmit((values) => onSubmitForm(values))}>
         <FilterSelect {...form.getInputProps('field')} />
+        {/* <div className={styles.numberInputs}> */}
         <FilterNumbersInput placeholder="От" label="Оклад" {...form.getInputProps('paymentFrom')} />
         <FilterNumbersInput placeholder="До" {...form.getInputProps('paymentTo')} />
+        {/* </div> */}
+
         <Button type="submit">Применить</Button>
       </form>
     </Billet>

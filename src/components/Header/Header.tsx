@@ -5,6 +5,7 @@ import { Navbar } from '../Navbar/Navbar';
 import { useAppLS } from '../../hooks/useAppLS';
 import { useDispatch } from 'react-redux';
 import { setFavoriteJob } from '../../redux/slices/jobsSlice/jobs';
+import { fetchAuth } from '../../redux/saga/actions';
 export const Header = () => {
   const AppLS = useAppLS('favorite');
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export const Header = () => {
   React.useEffect(() => {
     const favoriteJobs = AppLS.getStorage();
     dispatch(setFavoriteJob(favoriteJobs));
+    dispatch(fetchAuth());
   }, []);
 
   return (

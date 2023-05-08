@@ -1,0 +1,10 @@
+.root {
+  --pdLR: 172px;
+  padding-left: calc(var(--pdLR) + var(--pd));
+  padding-right: calc(var(--pdLR) + var(--pd));
+}
+@media (max-width: 950px) {
+  .root {
+    --pdLR: 0px;
+  }
+}

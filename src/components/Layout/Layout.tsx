@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './layout.module.scss';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import { filterState, jobState } from '../../redux/selctors';
+import { filterState, jobState, userState } from '../../redux/selctors';
 import { Loader } from '../Loader/Loader';
 
 type LayoutType = {
@@ -15,8 +15,10 @@ export const Layout: React.FC<LayoutType> = (props) => {
   const { aside, children } = props;
   const { status: jobStatus } = useSelector(jobState);
   const { status: filterStatus } = useSelector(filterState);
+  const { status: authStatus } = useSelector(userState);
 
-  const isLoading = jobStatus === 'loading' || filterStatus === 'loading';
+  const isLoading =
+    jobStatus === 'loading' || filterStatus === 'loading' || authStatus === 'loading';
 
   if (isLoading) {
     return <Loader />;

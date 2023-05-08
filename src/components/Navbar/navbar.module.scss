@@ -2,3 +2,10 @@
   display: flex;
   gap: 60px;
 }
+@media (max-width: 767px) {
+  .root {
+    width: 100%;
+    gap: unset;
+    justify-content: space-around;
+  }
+}
