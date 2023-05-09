@@ -1,5 +1,4 @@
-import { call, takeEvery, takeLeading, put } from 'redux-saga/effects';
-import { store } from '../../store';
+import { call, takeLeading, put } from 'redux-saga/effects';
 import { FETCH_AUTH } from '../../saga/constants';
 import { API } from '../../api';
 import { setApiAppId, setStatus } from './user';
