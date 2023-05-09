@@ -22,13 +22,13 @@ export const JobPage = () => {
   }, [isAuth]);
 
   return (
-    <>
+    <Layout className={styles.root}>
       {job && (
-        <Layout className={styles.root}>
+        <>
           <Job {...job} />
           <JobDesc description={job.vacancyRichText} />
-        </Layout>
+        </>
       )}
-    </>
+    </Layout>
   );
 };

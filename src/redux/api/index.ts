@@ -61,17 +61,29 @@ type FetchJobsResult = {
 };
 
 const fetchJobs = async () => {
-  const { filters, search } = store.getState().filter;
+  const { filters, search, page } = store.getState().filter;
 
-  const params = new URLSearchParams({
-    published: '1',
-    keyword: search,
-    payment_from: String(filters.paymentFrom),
-    payment_to: String(filters.paymentTo),
-    catalogues: String(filters.field),
+  // const params = new URLSearchParams({
+  //   published: '1',
+  //   keyword: search,
+  //   payment_from: String(filters.paymentFrom),
+  //   payment_to: String(filters.paymentTo),
+  //   catalogues: String(filters.field),
+  // });
+
+  // let { data } = await instance.get<FetchJobsResult>(URL.host + URL.vacancies + '?' + params);
+  let { data } = await instance.get<FetchJobsResult>(URL.host + URL.vacancies, {
+    params: {
+      published: '1',
+      keyword: search,
+      payment_from: String(filters.paymentFrom),
+      payment_to: String(filters.paymentTo),
+      catalogues: String(filters.field),
+      page,
+      count: 4,
+    },
   });
 
-  let { data } = await instance.get<FetchJobsResult>(URL.host + URL.vacancies + '?' + params);
   return data;
 };
 type FetchJobResult = {

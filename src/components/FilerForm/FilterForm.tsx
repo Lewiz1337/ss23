@@ -12,7 +12,6 @@ import React from 'react';
 
 export const FilterForm = () => {
   const { filters } = useSelector(filterState);
-
   const dispatch = useDispatch();
 
   const form = useForm<FiltersType>({
@@ -30,7 +29,7 @@ export const FilterForm = () => {
       paymentFrom,
       paymentTo,
     });
-  }, []);
+  }, [filters]);
 
   const onSubmitForm = (values: FiltersType) => {
     const { field, paymentFrom, paymentTo } = values;
@@ -67,11 +66,8 @@ export const FilterForm = () => {
       </div>
       <form className={styles.form} onSubmit={form.onSubmit((values) => onSubmitForm(values))}>
         <FilterSelect {...form.getInputProps('field')} />
-        {/* <div className={styles.numberInputs}> */}
         <FilterNumbersInput placeholder="От" label="Оклад" {...form.getInputProps('paymentFrom')} />
         <FilterNumbersInput placeholder="До" {...form.getInputProps('paymentTo')} />
-        {/* </div> */}
-
         <Button type="submit">Применить</Button>
       </form>
     </Billet>

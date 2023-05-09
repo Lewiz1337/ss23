@@ -27,6 +27,7 @@ export type FieldType = {
 type FilerStateType = {
   filters: FiltersType;
   search: string;
+  page: string;
   status: StatusType;
   fields: FieldType[];
 };
@@ -37,6 +38,7 @@ const initialState: FilerStateType = {
     paymentFrom: '',
     paymentTo: '',
   },
+  page: '1',
   search: '',
   status: null,
   fields: [],
@@ -61,9 +63,13 @@ const filterSlice = createSlice({
     clearFilter: (state) => {
       state.filters = initialState.filters;
     },
+    setPage: (state, action: ActionType<string>) => {
+      state.page = action.payload;
+    },
   },
 });
 
-export const { setFilters, setSearch, clearFilter, setFields, setStatus } = filterSlice.actions;
+export const { setFilters, setSearch, clearFilter, setFields, setStatus, setPage } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

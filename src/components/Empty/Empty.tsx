@@ -10,17 +10,18 @@ export type EmptyButtonType = {
 };
 
 type EmptyProps = {
+  title?: string;
   button?: EmptyButtonType;
 };
 
-export const Empty: React.FC<EmptyProps> = (props) => {
+export const Empty: React.FC<EmptyProps> = ({ title = 'Упс, здесь еще ничего нет!', button }) => {
   return (
     <div className={styles.root}>
       <EmptyIcon />
-      <h2>Упс, здесь еще ничего нет!</h2>
-      {props.button && (
-        <Button className={styles.button} variant="light" onClick={props.button.handleClick}>
-          {props.button.title}
+      <h2>{title}</h2>
+      {button && (
+        <Button className={styles.button} variant="light" onClick={button.handleClick}>
+          {button.title}
         </Button>
       )}
     </div>

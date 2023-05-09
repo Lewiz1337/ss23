@@ -9,7 +9,6 @@ import { useAppLS } from '../../hooks/useAppLS';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFavoriteJob } from '../../redux/slices/jobsSlice/jobs';
 import { jobsState } from '../../redux/selctors';
-import { Item } from '../../redux/slices/jobSlice/job';
 
 interface JobTypeProps extends JobType {
   handleClick?: (id: number) => any;
