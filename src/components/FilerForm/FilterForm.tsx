@@ -1,14 +1,15 @@
-import styles from './filterForm.module.scss';
-import { Billet } from '../Billet/Billet';
-import { CloseButton, Button } from '@mantine/core';
+import { Button } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ReactComponent as CrossIcon } from '../../media/svg/cross.svg';
+import { fetchJobs } from '../../redux/saga/actions';
 import { filterState } from '../../redux/selctors';
 import { FiltersType, clearFilter, setFilters } from '../../redux/slices/filterSlice/filter';
-import { fetchJobs } from '../../redux/saga/actions';
-import { FilterSelect } from './Inputs/FilterSelect';
+import { Billet } from '../Billet/Billet';
 import { FilterNumbersInput } from './Inputs/FilterNumbersInput';
-import React from 'react';
+import { FilterSelect } from './Inputs/FilterSelect';
+import styles from './filterForm.module.scss';
 
 export const FilterForm = () => {
   const { filters } = useSelector(filterState);
@@ -59,15 +60,22 @@ export const FilterForm = () => {
     <Billet className={styles.root}>
       <div className={styles.filterTitle}>
         <h3>Фильтры</h3>
-        <div className={styles.clearFilters}>
-          <p>Сбросить всё </p>
-          <CloseButton aria-label="Clear filters" onClick={onClearFilters} />
+        <div className={styles.clearFilters} onClick={onClearFilters}>
+          <p>Сбросить все</p>
+          <CrossIcon />
         </div>
       </div>
       <form className={styles.form} onSubmit={form.onSubmit((values) => onSubmitForm(values))}>
         <FilterSelect {...form.getInputProps('field')} />
-        <FilterNumbersInput placeholder="От" label="Оклад" {...form.getInputProps('paymentFrom')} />
-        <FilterNumbersInput placeholder="До" {...form.getInputProps('paymentTo')} />
+        <div className={styles.numberInputs}>
+          <FilterNumbersInput
+            placeholder="От"
+            label="Оклад"
+            {...form.getInputProps('paymentFrom')}
+          />
+          <FilterNumbersInput placeholder="До" {...form.getInputProps('paymentTo')} />
+        </div>
+
         <Button type="submit">Применить</Button>
       </form>
     </Billet>

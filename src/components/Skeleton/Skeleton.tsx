@@ -32,8 +32,8 @@ export const SkeletonList: React.FC<SkeletonListType> = ({ count = 4 }) => {
   const array = [...new Array(count)];
   return (
     <div className={styles.root}>
-      {array.map((_) => (
-        <AppSkeleton />
+      {array.map((_, index) => (
+        <AppSkeleton key={index} />
       ))}
     </div>
   );

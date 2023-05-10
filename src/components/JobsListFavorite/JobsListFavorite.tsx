@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { jobsState } from '../../redux/selctors';
 import { JobsListHOC } from '../JobsList/JobsList';
-import { Pagination } from '@mantine/core';
-
+import { Pagination } from '../Pagination/Pagination';
 import styles from '../JobsList/jobsList.module.scss';
 
 export const JobsListFavorite = () => {
@@ -27,12 +26,7 @@ export const JobsListFavorite = () => {
         button={{ handleClick: EmptyButtonHandleClick, title: 'Поиск вакансий' }}
         jobs={currentPage}
       />
-      <Pagination
-        className={styles.pagination}
-        value={activePage}
-        total={pageCount}
-        onChange={setPage}
-      />
+      <Pagination value={activePage} total={pageCount} onChange={setPage} />
     </div>
   );
 };

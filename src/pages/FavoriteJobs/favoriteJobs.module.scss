@@ -1,5 +1,6 @@
 .root {
   --pdLR: 172px;
+  padding-top: 24px;
   padding-left: calc(var(--pdLR) + var(--pd));
   padding-right: calc(var(--pdLR) + var(--pd));
 }

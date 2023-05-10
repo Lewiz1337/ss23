@@ -20,6 +20,7 @@ export const Tab: React.FC<TabType> = (props) => {
   return (
     <Link
       to={props.to}
+      tabIndex={0}
       className={classNames({
         [props.className]: true,
         [styles.tab]: true,

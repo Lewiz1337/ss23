@@ -1,0 +1,20 @@
+.mantine-Input-input {
+  height: 42px;
+}
+.mantine-Input-rightSection {
+  margin-right: 6px;
+}
+.mantine-NumberInput-controlUp {
+  display: flex;
+  align-items: flex-end;
+}
+.mantine-NumberInput-controlDown {
+  display: flex;
+  align-items: flex-start;
+}
+.mantine-UnstyledButton-root {
+  border-radius: 8px;
+}
+button[type='submit'].mantine-UnstyledButton-root {
+  background: var(--blue-500-main);
+}

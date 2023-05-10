@@ -2,13 +2,13 @@ import React from 'react';
 import { JobsListHOC } from '../JobsList/JobsList';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterState, jobsState } from '../../redux/selctors';
-import { Pagination } from '@mantine/core';
 import { useSearchParams } from 'react-router-dom';
 import { fetchJobs } from '../../redux/saga/actions';
 import { setFilters, setPage, setSearch } from '../../redux/slices/filterSlice/filter';
 
 import styles from '../JobsList/jobsList.module.scss';
 import { SkeletonList } from '../Skeleton/Skeleton';
+import { Pagination } from '../Pagination/Pagination';
 
 export const JobsListMain = () => {
   const { jobs, status } = useSelector(jobsState);
@@ -51,12 +51,7 @@ export const JobsListMain = () => {
     <div className={styles.root}>
       {status !== 'loading' ? <JobsListHOC jobs={jobs} /> : <SkeletonList count={4} />}
       {(status === 'loading' || !!jobs.length) && (
-        <Pagination
-          className={styles.pagination}
-          value={+page}
-          total={125}
-          onChange={onChangePage}
-        />
+        <Pagination value={+page} total={125} onChange={onChangePage} />
       )}
     </div>
   );

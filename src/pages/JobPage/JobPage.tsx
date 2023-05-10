@@ -25,7 +25,7 @@ export const JobPage = () => {
     <Layout className={styles.root}>
       {job && (
         <>
-          <Job {...job} />
+          <Job {...job} static={true} />
           <JobDesc description={job.vacancyRichText} />
         </>
       )}
