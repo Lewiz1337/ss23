@@ -66,17 +66,24 @@ export const FilterForm = () => {
         </div>
       </div>
       <form className={styles.form} onSubmit={form.onSubmit((values) => onSubmitForm(values))}>
-        <FilterSelect {...form.getInputProps('field')} />
+        <FilterSelect data-elem="industry-select" {...form.getInputProps('field')} />
         <div className={styles.numberInputs}>
           <FilterNumbersInput
             placeholder="От"
             label="Оклад"
+            data-elem="salary-from-input"
             {...form.getInputProps('paymentFrom')}
           />
-          <FilterNumbersInput placeholder="До" {...form.getInputProps('paymentTo')} />
+          <FilterNumbersInput
+            data-elem="salary-to-input"
+            placeholder="До"
+            {...form.getInputProps('paymentTo')}
+          />
         </div>
 
-        <Button type="submit">Применить</Button>
+        <Button type="submit" data-elem="search-button">
+          Применить
+        </Button>
       </form>
     </Billet>
   );

@@ -37,14 +37,16 @@ export const Job: React.FC<JobTypeProps> = (props) => {
       className={classNames({ [styles.root]: true, [styles.static]: props.static })}
       onClick={props.handleClick}
       onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => onHandleKeyDown(e, props.handleClick)}
-      tabIndex={0}>
+      tabIndex={0}
+      data-elem={`vacancy-${id}`}>
       <div className={styles.name}>
         <h3>{profession}</h3>
         <div
           tabIndex={0}
           className={styles.iconWrapper}
           onClick={toggleFavorite}
-          onKeyDown={(e) => onHandleKeyDown(e, toggleFavorite, e)}>
+          onKeyDown={(e) => onHandleKeyDown(e, toggleFavorite, e)}
+          data-elem={`vacancy-${id}-shortlist-button`}>
           {!favoriteJobs.find((item) => item.id === id) ? <SaveIcon /> : <SaveIconActive />}
         </div>
       </div>

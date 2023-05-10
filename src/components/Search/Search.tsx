@@ -50,12 +50,15 @@ export const Search = () => {
         <TextInput
           className={styles.searchInput}
           variant="unstyled"
+          data-elem="search-input"
           style={{ border: 'none', outline: 'none' }}
           placeholder="Введите название вакансии"
           icon={<SearchIcon />}
           {...form.getInputProps('searchValue')}
         />
-        <Button type="submit">Поиск</Button>
+        <Button data-elem="search-button" type="submit">
+          Поиск
+        </Button>
       </form>
     </Billet>
   );

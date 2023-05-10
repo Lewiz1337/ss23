@@ -19,7 +19,6 @@ export const FilterNumbersInput: React.FC<FilterNumbersInputType> = ({
       type="number"
       rightSectionProps={{ border: 'none' }}
       parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-      // {...form.getInputProps('paymentFrom')}
       {...props}
     />
   );
