@@ -9,6 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Redux-saga
 - React-router
 - React-helmet
+- Mantine
 - sass/scss
 - classNames
 - axios
