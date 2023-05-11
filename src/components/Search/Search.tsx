@@ -4,7 +4,7 @@ import { Billet } from '../Billet/Billet';
 import { Button, TextInput } from '@mantine/core';
 import { ReactComponent as SearchIcon } from '../../media/svg/Search.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPage, setSearch } from '../../redux/slices/filterSlice/filter';
+import { setSearch } from '../../redux/slices/filterSlice/filter';
 import { fetchJobs } from '../../redux/saga/actions';
 import { useForm } from '@mantine/form';
 import { useSearchParams } from 'react-router-dom';
