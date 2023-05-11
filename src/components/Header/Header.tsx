@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setFavoriteJob } from '../../redux/slices/jobsSlice/jobs';
 import { fetchAuth } from '../../redux/saga/actions';
 export const Header = () => {
-  const AppLS = useAppLS('favorite');
+  const AppLS = useAppLS('jobored_favorite');
   const dispatch = useDispatch();
 
   React.useEffect(() => {

@@ -20,7 +20,7 @@ interface JobTypeProps extends JobType {
 
 export const Job: React.FC<JobTypeProps> = (props) => {
   const { profession, payment_from, payment_to, town, currency, type_of_work, id } = props;
-  const AppLS = useAppLS('favorite');
+  const AppLS = useAppLS('jobored_favorite');
   const dispatch = useDispatch();
 
   const { favoriteJobs } = useSelector(jobsState);

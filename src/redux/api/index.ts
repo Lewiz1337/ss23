@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { store } from '../store';
+import { getUTCTime } from '../../functions/getUTCTime';
 
 enum enumApi {
   xSecretKey = 'GEU4nvd3rej*jeh.eqp',
@@ -26,9 +27,30 @@ let instance = axios.create({
 
 type FetchAuthType = {
   access_token: string;
+  expires_in: number;
 };
 
+function setAccessTokenToHeader(access_token: string) {
+  instance = axios.create({
+    headers: {
+      'x-secret-key': enumApi.xSecretKey,
+      'X-Api-App-Id': enumApi.client_secret,
+      access_token: access_token,
+    },
+  });
+}
+
 const fetchAuth = async () => {
+  const tokenJSON = localStorage.getItem('jobored_access_token');
+
+  if (tokenJSON) {
+    const token = JSON.parse(tokenJSON);
+    if (token.access_token && token.expired > getUTCTime()) {
+      setAccessTokenToHeader(token.access_token);
+      return { access_token: token.access_token };
+    }
+  }
+
   const { login, password, client_id, client_secret, hr } = enumApi;
   let { data } = await instance.get<FetchAuthType>(URL.host + URL.authUrl, {
     params: {
@@ -39,20 +61,15 @@ const fetchAuth = async () => {
       hr,
     },
   });
-  instance = axios.create({
-    headers: {
-      'x-secret-key': enumApi.xSecretKey,
-      'X-Api-App-Id': enumApi.client_secret,
-      access_token: data.access_token,
-    },
-  });
-  return data;
-};
 
-const isAuth = async () => {
-  if (!store.getState().user.isAuth && store.getState().user.status === null) {
-    return await fetchAuth();
-  }
+  localStorage.setItem(
+    'jobored_access_token',
+    JSON.stringify({ access_token: data.access_token, expired: getUTCTime(data.expires_in) }),
+  );
+
+  setAccessTokenToHeader(data.access_token);
+
+  return data;
 };
 
 type FetchJobsResult = {
@@ -110,5 +127,4 @@ export const API = {
   fetchJobById,
   fetchFields,
   fetchAuth,
-  isAuth,
 };
