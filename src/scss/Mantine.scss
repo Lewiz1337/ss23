@@ -1,5 +1,6 @@
 .mantine-Input-input {
   height: 42px;
+  border-radius: 8px;
 }
 .mantine-Input-rightSection {
   margin-right: 6px;
@@ -17,4 +18,7 @@
 }
 button[type='submit'].mantine-UnstyledButton-root {
   background: var(--blue-500-main);
+}
+.mantine-Pagination-control {
+  color: var(--black);
 }

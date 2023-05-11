@@ -11,11 +11,17 @@ import { FilterNumbersInput } from './Inputs/FilterNumbersInput';
 import { FilterSelect } from './Inputs/FilterSelect';
 import styles from './filterForm.module.scss';
 
+type FormType = {
+  field: string;
+  paymentFrom: number | '';
+  paymentTo: number | '';
+};
+
 export const FilterForm = () => {
   const { filters } = useSelector(filterState);
   const dispatch = useDispatch();
 
-  const form = useForm<FiltersType>({
+  const form = useForm<FormType>({
     initialValues: {
       field: '',
       paymentFrom: '',
@@ -27,18 +33,18 @@ export const FilterForm = () => {
     const { field, paymentFrom, paymentTo } = filters;
     form.setValues({
       field,
-      paymentFrom,
-      paymentTo,
+      paymentFrom: +paymentFrom || '',
+      paymentTo: +paymentTo || '',
     });
   }, [filters]);
 
-  const onSubmitForm = (values: FiltersType) => {
+  const onSubmitForm = (values: FormType) => {
     const { field, paymentFrom, paymentTo } = values;
     dispatch(
       setFilters({
         field,
-        paymentFrom,
-        paymentTo,
+        paymentFrom: String(paymentFrom),
+        paymentTo: String(paymentTo),
       }),
     );
     dispatch(fetchJobs());

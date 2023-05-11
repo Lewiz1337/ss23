@@ -11,7 +11,7 @@ import { SkeletonList } from '../Skeleton/Skeleton';
 import { Pagination } from '../Pagination/Pagination';
 
 export const JobsListMain = () => {
-  const { jobs, status } = useSelector(jobsState);
+  const { jobs, status, total } = useSelector(jobsState);
   const { page, filters, search } = useSelector(filterState);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -51,7 +51,7 @@ export const JobsListMain = () => {
     <div className={styles.root}>
       {status !== 'loading' ? <JobsListHOC jobs={jobs} /> : <SkeletonList count={4} />}
       {(status === 'loading' || !!jobs.length) && (
-        <Pagination value={+page} total={125} onChange={onChangePage} />
+        <Pagination value={+page} total={Math.floor(total / 4)} onChange={onChangePage} />
       )}
     </div>
   );
