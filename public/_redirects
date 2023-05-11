@@ -1,5 +1,4 @@
 # Redirects from what the browser requests to what we serve
 
-/ /jobs_list
-/jobs_list /jobs_favorite
-/jobs_favorite /jobs_list
+/jobs_list /
+/jobs_favorite /
