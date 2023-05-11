@@ -56,12 +56,15 @@ const filterSlice = createSlice({
     },
     setFilters: (state, action: ActionType<FiltersType>) => {
       state.filters = action.payload;
+      state.page = '1';
     },
     setSearch: (state, action: ActionType<string>) => {
       state.search = action.payload;
+      state.page = '1';
     },
     clearFilter: (state) => {
       state.filters = initialState.filters;
+      state.page = '1';
     },
     setPage: (state, action: ActionType<string>) => {
       state.page = action.payload;
