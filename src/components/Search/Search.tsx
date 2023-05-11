@@ -30,7 +30,7 @@ export const Search = () => {
     dispatch(setSearch(searchValue));
     dispatch(fetchJobs());
   };
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (firstMount.current) {
       firstMount.current = false;
       const param = searchParams.get('search');

@@ -1,4 +1,4 @@
-import { call, takeEvery, put } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { setJobs, setStatus } from './jobs';
 import { FETCH_JOBS } from '../../saga/constants';
 import { API } from '../../api';
@@ -16,5 +16,5 @@ function* fetchVacantionsWorker(): Generator<any, any, any> {
 }
 
 export function* fetchVacantionsWatcher() {
-  yield takeEvery(FETCH_JOBS, fetchVacantionsWorker);
+  yield takeLatest(FETCH_JOBS, fetchVacantionsWorker);
 }

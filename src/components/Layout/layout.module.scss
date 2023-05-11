@@ -8,6 +8,9 @@
   display: flex;
   gap: 28px;
   width: 100%;
+  main {
+    width: 100%;
+  }
 }
 @media (max-width: 950px) {
   .root {

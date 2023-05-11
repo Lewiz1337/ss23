@@ -50,6 +50,15 @@
 .iconWrapper {
   width: 24px;
   height: 24px;
+  border: none;
+  background: none;
+  transition-duration: 0.1s;
+  &:hover {
+    transform: scale(0.95);
+  }
+  &:active {
+    transform: scale(1.2);
+  }
 }
 .static {
   .name {

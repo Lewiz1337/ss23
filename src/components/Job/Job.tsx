@@ -25,7 +25,7 @@ export const Job: React.FC<JobTypeProps> = (props) => {
 
   const { favoriteJobs } = useSelector(jobsState);
 
-  const toggleFavorite = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     AppLS.toggleStorage(id);
     const favoriteJobs = AppLS.getStorage();
@@ -41,14 +41,14 @@ export const Job: React.FC<JobTypeProps> = (props) => {
       data-elem={`vacancy-${id}`}>
       <div className={styles.name}>
         <h3>{profession}</h3>
-        <div
+        <button
           tabIndex={0}
           className={styles.iconWrapper}
           onClick={toggleFavorite}
           onKeyDown={(e) => onHandleKeyDown(e, toggleFavorite, e)}
           data-elem={`vacancy-${id}-shortlist-button`}>
           {!favoriteJobs.find((item) => item.id === id) ? <SaveIcon /> : <SaveIconActive />}
-        </div>
+        </button>
       </div>
       <div className={styles.info}>
         <p className={styles.salary}>

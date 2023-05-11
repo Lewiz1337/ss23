@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userState } from '../../redux/selctors';
 import { fetchFields, fetchJobs } from '../../redux/saga/actions';
 import { JobsListMain } from '../../components/JobsListMain/JobsListMain';
+import { Helmet } from 'react-helmet';
 
-export const Main = () => {
+const MainPage = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector(userState);
   React.useEffect(() => {
@@ -19,10 +20,18 @@ export const Main = () => {
 
   return (
     <Layout aside={<FilterForm />}>
-      <div>
-        <Search />
-        <JobsListMain />
-      </div>
+      <>
+        <Helmet>
+          <meta name="description" content="Jobored main page - list of vacancies" />
+          <title>Jobored</title>
+        </Helmet>
+
+        <main>
+          <Search />
+          <JobsListMain />
+        </main>
+      </>
     </Layout>
   );
 };
+export default MainPage;

@@ -1,5 +1,5 @@
 export const onHandleKeyDown = (
-  e: React.KeyboardEvent<HTMLDivElement>,
+  e: React.KeyboardEvent<HTMLElement>,
   callback?: (...x: any) => void,
   ...arg: any
 ): void => {

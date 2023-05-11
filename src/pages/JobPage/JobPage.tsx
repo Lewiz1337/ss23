@@ -8,8 +8,9 @@ import styles from './jobPage.module.scss';
 import { JobDesc } from '../../components/JobDesc/JobDesc';
 import { useParams } from 'react-router-dom';
 import { fetchJobById } from '../../redux/saga/actions';
+import { Helmet } from 'react-helmet';
 
-export const JobPage = () => {
+const JobPage = () => {
   const { job } = useSelector(jobState);
   const { isAuth } = useSelector(userState);
   const dispatch = useDispatch();
@@ -25,6 +26,10 @@ export const JobPage = () => {
     <Layout className={styles.root}>
       {job && (
         <>
+          <Helmet>
+            <meta name="description" content="Information about vacancy" />
+            <title>{job.profession}</title>
+          </Helmet>
           <Job {...job} static={true} />
           <JobDesc description={job.vacancyRichText} />
         </>
@@ -32,3 +37,4 @@ export const JobPage = () => {
     </Layout>
   );
 };
+export default JobPage;
