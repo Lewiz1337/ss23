@@ -79,7 +79,7 @@ type FetchJobsResult = {
 
 const fetchJobs = async () => {
   const { filters, search, page } = store.getState().filter;
-
+  const no_agreement = filters.paymentFrom || filters.paymentTo ? 1 : 0;
   let { data } = await instance.get<FetchJobsResult>(URL.host + URL.vacancies, {
     params: {
       published: '1',
@@ -88,6 +88,7 @@ const fetchJobs = async () => {
       payment_to: String(filters.paymentTo),
       catalogues: String(filters.field),
       page,
+      no_agreement,
       count: 4,
     },
   });
