@@ -12,5 +12,8 @@ export const getCurrentPaymentView = (
   if (!payment_from && payment_to) {
     return `до ${payment_to} ${currency}`;
   }
+  if (payment_from && payment_to && payment_to === payment_from) {
+    return `${payment_from}`;
+  }
   return 'Договорная';
 };
