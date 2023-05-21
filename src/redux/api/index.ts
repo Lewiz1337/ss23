@@ -35,7 +35,7 @@ function setAccessTokenToHeader(access_token: string) {
     headers: {
       'x-secret-key': enumApi.xSecretKey,
       'X-Api-App-Id': enumApi.client_secret,
-      access_token: access_token,
+      Authorization: `Bearer ${access_token}`,
     },
   });
 }
